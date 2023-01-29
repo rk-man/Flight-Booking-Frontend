@@ -1,0 +1,59 @@
+.booking-status {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.all-bookings {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 6rem;
+}
+.each-booking {
+    width: 100%;
+    max-width: 80rem;
+    border-radius: 0.4rem;
+    border: 0.2rem solid var(--primary-color);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 2.4rem;
+}
+
+.each-booking-sub-data {
+    display: flex;
+    width: 80%;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.each-booking-sub-data-each {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 0.4rem;
+}
+
+.each-booking-passengers {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 1rem;
+    width: 100%;
+}
+
+.each-booking-passengers-each {
+    border: 0.2rem solid var(--primary-color);
+    width: 100%;
+    padding: 1rem;
+}

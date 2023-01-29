@@ -1,0 +1,127 @@
+.flights-search-bar-container {
+    width: 100%;
+    background-color: var(--primary-color);
+    min-width: 60rem;
+    padding: 2rem;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 4rem;
+    margin-bottom: 8rem;
+}
+
+.flights-search-bar {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 6rem;
+}
+
+.flights-search-bar-field {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 0.8rem;
+    color: white;
+}
+
+.flights-search-bar-field-label {
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.flights-search-bar-field-input {
+    width: 100%;
+    border-radius: 0.4rem;
+    outline: none;
+    padding: 1rem;
+    font-size: 1.6rem;
+    border: none;
+    font-family: "Quicksand", sans-serif;
+    font-weight: 600;
+    color: black;
+    margin-bottom: 1rem;
+}
+
+.flightflights-search-bar-field-select {
+    width: 100%;
+    padding: 1rem;
+    outline: none;
+    border: none;
+    border-radius: 0.4rem;
+    color: black;
+    font-weight: 600;
+    font-family: "Quicksand";
+}
+
+.flightflights-search-bar-field-select-option {
+    font-weight: 500;
+    font-family: "Quicksand";
+}
+
+.flight-search-bar-date-submit {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    color: white;
+    gap: 1rem;
+    margin: 0 auto;
+}
+
+.flights-search-bar-field-date {
+    width: 100%;
+    padding: 1rem;
+    color: black;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    font-family: "Quicksand";
+}
+
+.all-flights {
+    width: 100%;
+    border-collapse: collapse;
+}
+.all-flights-heading {
+    font-size: 1.6rem;
+}
+.each-flight-data,
+.all-flights-heading {
+    border: 0.2rem solid var(--primary-color);
+    padding: 1rem;
+    text-align: start;
+}
+
+.each-flight-data {
+    font-weight: 500;
+    font-size: 1.4rem;
+}
+
+.each-flight-data-book {
+    border: 0.2rem solid var(--primary-color);
+    padding: 1rem;
+    font-weight: 600;
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+    font-size: 1.6rem;
+    cursor: pointer;
+}
+
+.each-flight-data-book:hover {
+    background: transparent;
+    color: var(--primary-color);
+}
+
+@media only screen and (max-width: 62.5em) {
+    .flights-search-bar-container {
+        width: 100%;
+        min-width: 0;
+    }
+}
