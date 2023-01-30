@@ -7,7 +7,14 @@ function EachBooking({ booking }) {
             <p className="each-booking-ticket-no">
                 Ticket No : {booking._id.slice(0, 14)}
             </p>
+
             <div className="each-booking-sub-data">
+                <div className="each-booking-sub-data-each">
+                    <p className="each-booking-sub-data-each-heading">
+                        Airline
+                    </p>
+                    <p>{booking.flight.name}</p>
+                </div>
                 <div className="each-booking-sub-data-each">
                     <p className="each-booking-sub-data-each-heading">From</p>
                     <p>{booking.flight.sourceLoc}</p>
