@@ -18,13 +18,14 @@ export function FlightProvider({ children }) {
     const getAllFlightsOnSpecifiedParams = async (
         sourceTime,
         sourceLoc,
-        destinationLoc
+        destinationLoc,
+        name
     ) => {
         let flights = [];
         try {
             const token = getCookie("flight_cookie");
             const res = await axios.get(
-                `${BACKEND_URL}/api/v1/flights?sourceTime=${sourceTime}&sourceLoc=${sourceLoc}&destinationLoc=${destinationLoc}`,
+                `${BACKEND_URL}/api/v1/flights?sourceTime=${sourceTime}&sourceLoc=${sourceLoc}&destinationLoc=${destinationLoc}&name=${name}`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,
@@ -57,6 +58,26 @@ export function FlightProvider({ children }) {
         }
 
         return cities;
+    };
+
+    const getAllAirlines = async (search) => {
+        let airlines = [];
+        try {
+            const token = getCookie("flight_cookie");
+            const res = await axios.get(
+                `${BACKEND_URL}/api/v1/flights/all-airlines?search=${search}`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            );
+            airlines = res.data.airlines;
+        } catch (err) {
+            console.log(err);
+        }
+
+        return airlines;
     };
 
     const createBooking = async (bookingData) => {
@@ -131,6 +152,7 @@ export function FlightProvider({ children }) {
                 createBooking,
                 getFlight,
                 getAllBookings,
+                getAllAirlines,
             }}
         >
             {children}

@@ -9,6 +9,7 @@ import BookingSuccess from "./pages/BookingSuccess";
 import BookingFailure from "./pages/BookingFailure";
 import BookTickets from "./pages/BookTickets";
 import Bookings from "./pages/Bookings";
+import Account from "./pages/Account";
 
 function App() {
     return (
@@ -36,6 +37,8 @@ function App() {
                                 path="/flights/:id/book-tickets"
                                 element={<BookTickets />}
                             />
+
+                            <Route path="/account" element={<Account />} />
 
                             <Route path="/bookings" element={<Bookings />} />
                         </Routes>

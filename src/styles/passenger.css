@@ -19,4 +19,12 @@
     gap: 0.4rem;
     color: black;
     width: 100%;
+    position: relative;
+}
+
+.remove-passenger-icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(-50%, 50%);
 }

@@ -4,13 +4,16 @@ import { convertDateToString } from "../helpers";
 function EachBooking({ booking }) {
     return (
         <div className="each-booking">
+            <p className="each-booking-ticket-no">
+                Ticket No : {booking._id.slice(0, 14)}
+            </p>
             <div className="each-booking-sub-data">
                 <div className="each-booking-sub-data-each">
-                    <p>From</p>
+                    <p className="each-booking-sub-data-each-heading">From</p>
                     <p>{booking.flight.sourceLoc}</p>
                 </div>
                 <div className="each-booking-sub-data-each">
-                    <p>To</p>
+                    <p className="each-booking-sub-data-each-heading">To</p>
                     <p>{booking.flight.destinationLoc}</p>
                 </div>
             </div>
@@ -33,11 +36,15 @@ function EachBooking({ booking }) {
 
             <div className="each-booking-sub-data">
                 <div className="each-booking-sub-data-each">
-                    <p>Departure</p>
+                    <p className="each-booking-sub-data-each-heading">
+                        Departure
+                    </p>
                     <p>{convertDateToString(booking.flight.sourceTime)}</p>
                 </div>
                 <div className="each-booking-sub-data-each">
-                    <p>Arrival</p>
+                    <p className="each-booking-sub-data-each-heading">
+                        Arrival
+                    </p>
                     <p>{convertDateToString(booking.flight.arrivalTime)}</p>
                 </div>
             </div>

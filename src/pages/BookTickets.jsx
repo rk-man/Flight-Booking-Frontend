@@ -2,14 +2,15 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useContext } from "react";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import FlightContext from "../contexts/flightContext";
 import "./../styles/form.css";
 import "./../styles/passenger.css";
-import { getRandomTicketFare } from "../helpers";
+import { FaTrash } from "react-icons/fa";
 
 function BookTickets() {
     const { getFlight, createBooking } = useContext(FlightContext);
+    const location = useLocation();
     const { id } = useParams();
     const [flight, setFlight] = useState(null);
     const [passengers, setPassengers] = useState([]);
@@ -21,7 +22,7 @@ function BookTickets() {
     const [ticketFare, setTicketFare] = useState(0);
 
     useEffect(() => {
-        setTicketFare(getRandomTicketFare());
+        setTicketFare(location.state.ticketFare);
     }, []);
 
     useEffect(() => {
@@ -64,6 +65,16 @@ function BookTickets() {
                 flight: flight._id,
             });
         }
+    };
+
+    const handleRemovePassenger = (e) => {
+        e.preventDefault();
+        let id = e.target.closest(".each-passenger").id;
+        setPassengers(
+            passengers.filter((p, index) => {
+                return index !== Number(id);
+            })
+        );
     };
 
     return (
@@ -154,9 +165,17 @@ function BookTickets() {
                         {passengers.length > 0 ? (
                             passengers.map((p, index) => {
                                 return (
-                                    <div className="each-passenger" key={index}>
+                                    <div
+                                        className="each-passenger"
+                                        key={index}
+                                        id={index}
+                                    >
                                         <p>{p.name}</p>
                                         <p>{p.age}</p>
+                                        <FaTrash
+                                            className="icon-small remove-passenger-icon"
+                                            onClick={handleRemovePassenger}
+                                        />
                                     </div>
                                 );
                             })
@@ -165,9 +184,15 @@ function BookTickets() {
                         )}
                     </div>
 
-                    <div className="form-field">
-                        <label className="form-field-label">Total Fare</label>
-                        <p>Rs. {passengers.length * ticketFare}</p>
+                    <div className="form-field form-field-total-price">
+                        {/* <label className="form-field-label">Total Fare</label>
+                        <p>Rs. {passengers.length * ticketFare}</p> */}
+                        <h3>
+                            Total Price is Rs.{" "}
+                            <span style={{ color: "#0bffce" }}>
+                                {passengers.length * ticketFare}
+                            </span>
+                        </h3>
                     </div>
 
                     <button

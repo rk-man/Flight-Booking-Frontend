@@ -57,3 +57,12 @@
     width: 100%;
     padding: 1rem;
 }
+
+.each-booking-ticket-no {
+    font-weight: 600;
+    font-size: 2rem;
+}
+.each-booking-sub-data-each-heading {
+    font-weight: 600;
+    font-size: 1.8rem;
+}

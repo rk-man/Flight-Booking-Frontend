@@ -5,18 +5,19 @@ import FlightContext from "../contexts/flightContext";
 import "./../styles/flight.css";
 
 function HomePage() {
-    const { getAllFlightsOnSpecifiedParams, getAllCities } =
+    const { getAllFlightsOnSpecifiedParams, getAllCities, getAllAirlines } =
         useContext(FlightContext);
     const [flights, setFlights] = useState([]);
-    const [cities, setCities] = useState([]);
+    const [airlines, setAirlines] = useState([]);
     const [sourceCities, setSourceCities] = useState([]);
     const [destinationCities, setDestinationCities] = useState([]);
     const [sourceLoc, setSourceLoc] = useState("");
     const [destinationLoc, setDestinationLoc] = useState("");
     const [sourceTime, setSourceTime] = useState(null);
+    const [airlineName, setAirlineName] = useState("");
 
     useEffect(() => {
-        if (sourceLoc.length > 2) {
+        if (sourceLoc.length > 0) {
             console.log("Hello there");
             getAllCities(sourceLoc).then((res) => {
                 setSourceCities(res);
@@ -27,7 +28,7 @@ function HomePage() {
     }, [sourceLoc]);
 
     useEffect(() => {
-        if (destinationLoc.length > 2) {
+        if (destinationLoc.length > 0) {
             getAllCities(destinationLoc).then((res) => {
                 setDestinationCities(res);
             });
@@ -36,12 +37,24 @@ function HomePage() {
         }
     }, [destinationLoc]);
 
+    useEffect(() => {
+        if (airlineName.length > 0) {
+            getAllAirlines(airlineName).then((res) => {
+                setAirlines(res);
+            });
+        } else {
+            setAirlines([]);
+        }
+    }, [airlineName]);
+
     const handleChangeSearchCity = (e) => {
         e.preventDefault();
         if (e.target.id === "sourceLoc") {
             setSourceLoc(e.target.value);
         } else if (e.target.id === "destinationLoc") {
             setDestinationLoc(e.target.value);
+        } else if (e.target.id === "name") {
+            setAirlineName(e.target.value);
         }
     };
 
@@ -56,7 +69,8 @@ function HomePage() {
             getAllFlightsOnSpecifiedParams(
                 sourceTime,
                 sourceLoc,
-                destinationLoc
+                destinationLoc,
+                airlineName
             ).then((res) => {
                 setFlights(res);
             });
@@ -137,24 +151,58 @@ function HomePage() {
                 </div>
 
                 <div className="flight-search-bar-date-submit">
-                    <label className="flights-search-bar-field-label">
-                        Date
-                    </label>
-                    <input
-                        type="date"
-                        id="sourceTime"
-                        className="flights-search-bar-field-date"
-                        onChange={handleChangeSourceTime}
-                        required={true}
-                    />
-
-                    <button
-                        className="btn btn-primary"
-                        onClick={handleFetchAllFlights}
-                    >
-                        Search
-                    </button>
+                    <div className="flights-search-bar-field">
+                        <label className="flights-search-bar-field-label">
+                            Airline
+                        </label>
+                        <input
+                            type="text"
+                            id="name"
+                            className="flights-search-bar-field-input"
+                            onChange={handleChangeSearchCity}
+                            value={airlineName}
+                            required={true}
+                        />
+                        <select
+                            className="flightflights-search-bar-field-select"
+                            onChange={(e) => {
+                                e.preventDefault();
+                                setAirlineName(e.target.value);
+                            }}
+                        >
+                            <option>Choose your airline</option>
+                            {airlines.length > 0 &&
+                                airlines.map((airline, index) => {
+                                    return (
+                                        <option
+                                            className="flightflights-search-bar-field-select-option"
+                                            key={index}
+                                        >
+                                            {airline}
+                                        </option>
+                                    );
+                                })}
+                        </select>
+                    </div>
+                    <div className="flights-search-bar-field">
+                        <label className="flights-search-bar-field-label">
+                            Date
+                        </label>
+                        <input
+                            type="date"
+                            id="sourceTime"
+                            className="flights-search-bar-field-date"
+                            onChange={handleChangeSourceTime}
+                            required={true}
+                        />
+                    </div>
                 </div>
+                <button
+                    className="btn btn-primary"
+                    onClick={handleFetchAllFlights}
+                >
+                    Search
+                </button>
             </div>
 
             <table className="all-flights">
@@ -165,6 +213,7 @@ function HomePage() {
                         <th className="all-flights-heading">Destination</th>
                         <th className="all-flights-heading">Departure</th>
                         <th className="all-flights-heading">Arrival</th>
+                        <th className="all-flights-heading">Price</th>
                         <th className="all-flights-heading">Action</th>
                     </tr>
                     {flights.length > 0 ? (

@@ -46,6 +46,36 @@ export function AuthProvider({ children }) {
             });
         }
     };
+    const updateUser = async (userData) => {
+        try {
+            const token = getCookie("flight_cookie");
+            const res = await axios.patch(
+                `${BACKEND_URL}/api/v1/users/update`,
+                userData,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            );
+            setAuthUser((prev) => {
+                return {
+                    ...prev,
+                    user: res.data.user,
+                    success: true,
+                };
+            });
+        } catch (err) {
+            setAuthUser((prev) => {
+                return {
+                    ...prev,
+                    success: false,
+                    error: true,
+                    message: "Couldn't update user",
+                };
+            });
+        }
+    };
 
     const register = async (userData) => {
         try {
@@ -121,7 +151,7 @@ export function AuthProvider({ children }) {
 
     return (
         <AuthContext.Provider
-            value={{ authUser, login, resetAuth, logout, register }}
+            value={{ authUser, login, resetAuth, logout, register, updateUser }}
         >
             {children}
         </AuthContext.Provider>
