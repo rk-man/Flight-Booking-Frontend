@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { useState, useEffect } from "react";
 import EachFlight from "../components/EachFlight";
+import EachFlightFlex from "../components/EachFlightFlex";
 import FlightContext from "../contexts/flightContext";
 import "./../styles/flight.css";
 
@@ -231,6 +232,18 @@ function HomePage() {
                     )}
                 </tbody>
             </table>
+
+            <div className="all-flights all-flights-flex">
+                {flights.length > 0 ? (
+                    flights.map((flight, index) => {
+                        return (
+                            <EachFlightFlex flight={flight} key={flight._id} />
+                        );
+                    })
+                ) : (
+                    <p>No Flights to show so far</p>
+                )}
+            </div>
         </>
     );
 }

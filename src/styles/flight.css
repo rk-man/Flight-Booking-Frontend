@@ -90,8 +90,31 @@
     width: 100%;
     border-collapse: collapse;
 }
+
+.all-flights-flex {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 2rem;
+    display: none;
+}
+
 .all-flights-heading {
     font-size: 1.6rem;
+}
+
+.each-flight-flex {
+    width: 100%;
+    max-width: 80rem;
+    border-radius: 0.4rem;
+    border: 0.2rem solid var(--primary-color);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 2.4rem;
 }
 .each-flight-data,
 .all-flights-heading {
@@ -125,5 +148,23 @@
     .flights-search-bar-container {
         width: 100%;
         min-width: 0;
+    }
+}
+
+@media only screen and (max-width: 50em) {
+    .flights-search-bar-container {
+        width: 100%;
+        min-width: 0;
+    }
+    .all-flights {
+        display: none;
+    }
+    .all-flights-flex {
+        display: block;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        gap: 4rem;
     }
 }

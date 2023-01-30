@@ -35,6 +35,16 @@
     justify-content: space-between;
 }
 
+.each-booking-sub-data-flex {
+    width: 90%;
+}
+
+.each-booking-sub-data-ticket-book {
+    width: 50%;
+    justify-content: flex-start;
+    gap: 4rem;
+}
+
 .each-booking-sub-data-each {
     display: flex;
     flex-direction: column;
